@@ -13,7 +13,8 @@ program
   .action((filepath1, filepath2) => {
     const resolvedFilepath1 = path.resolve(filepath1);
     const resolvedFilepath2 = path.resolve(filepath2);
-    console.log(parsingJson(resolvedFilepath1, resolvedFilepath2));
+    console.log(JSON.stringify(parsingJson(resolvedFilepath1), null, 2));
+    console.log(JSON.stringify(parsingJson(resolvedFilepath2), null, 2));
   });
 
 program.parse(process.argv);

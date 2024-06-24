@@ -2,6 +2,7 @@
 import { program } from 'commander';
 import { parsingJson } from '../src/parsing.js';
 import path from 'path';
+import { searchForDifference } from '../src/index.js';
 
 program
   .name('gendiff')
@@ -13,8 +14,9 @@ program
   .action((filepath1, filepath2) => {
     const resolvedFilepath1 = path.resolve(filepath1);
     const resolvedFilepath2 = path.resolve(filepath2);
-    console.log(JSON.stringify(parsingJson(resolvedFilepath1), null, 2));
-    console.log(JSON.stringify(parsingJson(resolvedFilepath2), null, 2));
+    const file1 = parsingJson(resolvedFilepath1);
+    const file2 = parsingJson(resolvedFilepath2);
+    console.log(searchForDifference(file1, file2));
   });
 
 program.parse(process.argv);
